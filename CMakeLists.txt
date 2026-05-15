@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.26)
     # for now, the project name is used as the executable name
 
 ##CONFIGURATII PROIECT
-set(MAIN_PROJECT_NAME "POO2")
+set(MAIN_PROJECT_NAME "WORDLE")
 set(MAIN_EXECUTABLE_NAME "${MAIN_PROJECT_NAME}")
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
@@ -47,7 +47,6 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/GridCell.h
         src/GridCell.cpp
         include/PopUp.h
-        src/PopUp.cpp
         include/Button.h
         src/Button.cpp
         include/Key.h
@@ -58,6 +57,9 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/WM.h
         src/WM.cpp
         include/WordleExceptions.h
+        include/Hint.h
+        include/ColorStrategy.h
+        include/ButtonObserver.h
 )
 target_sources(${MAIN_EXECUTABLE_NAME}
     PRIVATE

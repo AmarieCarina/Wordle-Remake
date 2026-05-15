@@ -6,7 +6,7 @@ Label::Label(float x, float y, const std::string& content, const sf::Font& font,
 {
     text.setFillColor(sf::Color::White);
 
-    sf::FloatRect bounds = text.getLocalBounds();
+    const sf::FloatRect bounds = text.getLocalBounds();
     text.setOrigin({
         bounds.size.x / 2.0f,
         bounds.size.y / 2.0f});

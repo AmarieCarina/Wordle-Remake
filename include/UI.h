@@ -15,7 +15,7 @@ public:
 
     //getters, setters pentru vizibilitate
     void setVisible(bool visible);
-    bool getVisible()const;
+    [[nodiscard]] bool getVisible()const;
 
     //setare pozitie
     void setPosition(sf::Vector2f pos);

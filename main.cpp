@@ -11,7 +11,16 @@
 #include "Label.h"
 #include "GE.h"
 #include "WordleExceptions.h"
+#include "Hint.h"
 
+template<class T>
+void alignElements(std::vector<std::unique_ptr<T>>& elements, float startX, float startY, float spacingX, float spacingY, int columns) {
+    for (size_t i = 0; i < elements.size(); ++i) {
+        float x = startX + (i % columns) * spacingX;
+        float y = startY + (i / columns) * spacingY;
+        elements[i]->setPosition({x, y});
+    }
+}
 
 int main() {
     try {
@@ -30,6 +39,7 @@ int main() {
 
         ///////GAME ENGINE
         GE engine(font, fontTitle);
+        Hint hintManager;
 
         ////////POP UP INTRO + BUTON PLAY
         auto Intro = std::make_unique<PopUp>(150.f, 200.f, 500.f, 200.f);
@@ -46,52 +56,44 @@ int main() {
         Instr->addElement(std::make_unique<Label>(390.f,340.f,"- the color of the tiles will change to show",font,20));
         Instr->addElement(std::make_unique<Label>(390.f,360.f,"how close your guess was to the word.",font,20));
         Instr->addElement(std::make_unique<Label>(220.f,400.f,"Examples",font,20));
-        int index=0;
-        int dist=0;
-        char exemple[]={'W','O','R','D','Y','L','I','G','H','T','R','O','G','U','E'};
-        size_t nrLit=0;
-        for (int i=0;i<3;i++) {
-            for (int j=0;j<5;j++) {
-                auto x = static_cast<float>(200+j*10+index);
-                auto y = static_cast<float>(430+i*10+dist);
-                auto cell = std::make_unique<GridCell>(x,y,30.f,font);
-                if (exemple[nrLit]=='W') {
-                    cell->updateState(CellState::Correct);
-                }
-                if (exemple[nrLit]=='I') {
-                    cell->updateState(CellState::Present);
-                }
-                if (exemple[nrLit]=='U') {
-                    cell->updateState(CellState::Default);
-                }
-                cell->setLetter(exemple[nrLit]);
-                nrLit++;
-                Instr->addElement(std::move(cell));
-                index+=26;
-                if (j==4) {index=0; dist+=60;}
-            }
+
+
+        std::vector<std::unique_ptr<GridCell>> exampleCells;
+
+        for (int i = 0; i < 15; i++) {
+            char exemple[] = {'W','O','R','D','Y','L','I','G','H','T','R','O','G','U','E'};
+            auto cell = std::make_unique<GridCell>(0.f, 0.f, 30.f, font);
+            cell->setLetter(exemple[i]);
+
+            // Folosim Strategy din hintManager pentru culori
+            if (exemple[i] == 'W') cell->setColor(hintManager.getCellColor(CellState::Correct));
+            if (exemple[i] == 'I') cell->setColor(hintManager.getCellColor(CellState::Present));
+
+            exampleCells.push_back(std::move(cell));
         }
-        Instr->addElement(std::make_unique<Label>(380.f,475.f,"W is in the word and in the correct spot.",font,20));
-        Instr->addElement(std::make_unique<Label>(365.f,545.f,"I is in the word but in the wrong spot.",font,20));
-        Instr->addElement(std::make_unique<Label>(340.f,615.f,"U is not in the word in any spot.",font,20));
+        alignElements(exampleCells, 200.f, 430.f, 36.f, 60.f, 5);
 
+        // Mutăm celulele în PopUp
+        for (auto& cell : exampleCells) {
+            Instr->addElement(std::move(cell));
+        }
         Instr->setVisible(false);
+
+
         Button closeButton(600.0f, 160.0f, 30.0f, 30.0f, "x", font);
-        closeButton.setOnClick([&Instr]() {
-            if (Instr) {
-                Instr->setVisible(false);
-            }
-        });
 
-        playButton.setOnClick([&Intro, &Instr]() {
-            if (Intro) {
-                Intro->setVisible(false);
-            }
-            if (Instr) {
-                Instr->setVisible(true);
-            }
-        });
+        playButton.setAction("PLAY");
+        closeButton.setAction("CLOSE");
 
+        // Înregistrăm observatorii (trebuie ca engine-ul sau o clasă nouă să fie Observer)
+        // Pentru simplitate acum, dacă ai păstrat setOnClick, lasă-l, dar cerința cere Observer.
+        // Dacă ai creat ButtonObserver, codul arată așa:
+        playButton.addObserver(&engine);
+        closeButton.addObserver(&engine);
+
+        Button hintButton(650.f, 50.f, 100.f, 40.f, "Hint", font);
+        hintButton.setAction("GIVE_HINT");
+        hintButton.addObserver(&hintManager);
 
         //////////////////////////////////////////////////////////////////////////////////
         ////////////////// B U C L A   W H I L E /////////////////////////////////////////

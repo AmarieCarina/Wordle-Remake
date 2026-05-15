@@ -21,6 +21,9 @@ public:
 
     void setLetter(char c);
     char getLetter() const;
+    void setColor(const sf::Color color) {
+        box.setFillColor(color); // sau rect.setFillColor(color);
+    }
 
     void updateState(CellState newState); // modif culoare
 

@@ -44,23 +44,6 @@ Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității
 
 ---
 
-##  Evenimente și Interactivitate
-Jocul este extrem de receptiv, ascultând activ evenimentele de sistem:
-
-* **Input Mixt**: Utilizatorul poate juca folosind atât **tastatura fizică** (evenimente `TextEntered`), cât și **mouse-ul** prin tastatura virtuală.
-* **Sistem de Callbacks**: Butoanele folosesc expresii **lambda** pentru a defini acțiuni (`setOnClick`), permițând o comunicare elegantă între obiecte fără a crea dependențe circulare.
-* **Gestiunea Stărilor**: Tranzițiile între ecrane (Intro -> Instrucțiuni -> Joc) sunt gestionate prin flag-uri de vizibilitate în interiorul obiectelor de tip PopUp.
-
----
-
-##  Gestionarea Erorilor (*Exception Handling*)
-Siguranța execuției este garantată printr-o ierarhie proprie de excepții, derivată din `std::exception`:
-* **`ResourceException`**: Aruncată în cazul în care activele (fonturi, imagini) lipsesc, prevenind un crash silențios.
-<br><br>
-* **`WordleException`**: O clasă de bază pentru erori specifice domeniului jocului, capturată în `main` pentru a oferi mesaje de diagnostic clare utilizatorului.
-<br><br>
-* **`DictionaryException`**: Excepție personalizată care semnalează probleme critice legate de fișierul de cuvinte al jocului. Aceasta este aruncată dacă fișierul `words.txt` lipsește din folderul de resurse sau dacă acesta este găsit, dar nu conține date valide. 
-
 ---
 
 ##  Elementele Vizuale 
@@ -78,29 +61,12 @@ Siguranța execuției este garantată printr-o ierarhie proprie de excepții, de
 ---
 
 ## Cerințe indeplinite
-- [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
-- [x] moșteniri:
-  - minim o clasă de bază și **3 clase derivate** din aceeași ierarhie; cele 3 derivate moștenesc aceeași clasă de bază
-  - [x] funcții virtuale (pure) apelate prin pointeri de bază din clasa care conține atributul de tip pointer de bază
-  - [x] apelarea constructorului din clasa de bază din constructori din derivate
-  - [x] clasă cu atribut de tip pointer la o clasă de bază cu derivate; aici apelați funcțiile virtuale prin pointer de bază, eventual prin interfața non-virtuală din bază
-    - [x] `dynamic_cast`/`std::dynamic_pointer_cast` pentru downcast cu sens
-    - [x] smart pointers (recomandat, opțional)
-- [x] excepții
-  - [x] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim **3** clase pentru erori specifice distincte
-    - clasele de excepții trebuie să trateze categorii de erori distincte (exemplu de erori echivalente: citire fișiere cu diverse extensii)
-  - [x] utilizare cu sens: de exemplu, `throw` în constructor (sau funcție care întoarce un obiect), `try`/`catch` în `main`
-  - această ierarhie va fi complet independentă de ierarhia cu funcții virtuale
-- [x] funcții și atribute `static`
-- [x] STL
-- [x] cât mai multe `const`
-- [x] funcții *de nivel înalt*, de eliminat cât mai mulți getters/setters/funcții low-level
-- [ ] minim 75-78% din codul propriu să fie C++
-- [ ] la sfârșit: commit separat cu adăugarea unei noi clase derivate fără a modifica restul codului, **pe lângă cele 3 derivate deja adăugate** din aceeași ierarhie
-  - noua derivată nu poate fi una existentă care a fost ștearsă și adăugată din nou
-  - noua derivată va fi integrată în codul existent (adică va fi folosită, nu adăugată doar ca să fie)
-- [ ] tag de `git` pe commit cu **toate bifele**: de exemplu `v0.2`
-- [ ] code review #2 2 proiecte
+- [ ] minim o funcție șablon și o clasă șablon (template)
+- [ ] modificați o clasă existentă și transformați-o în clasă template
+- [ ] adăugați (minim) un atribut de tip T sau care depinde de T
+- [ ] adăugați (minim) o funcție membru care să depindă de T (sau de alt parametru template);
+- [ ] adăugați (minim) o funcție normală/liberă template; poate să fie friend
+- [ ] minim 2 design patterns
 
 
 

@@ -5,10 +5,10 @@
 #include "Label.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 GE::GE(sf::Font& font, sf::Font& fontTitle)
-    :currentRow{0},
+    :UI{0.f, 0.f},
+    currentRow{0},
     currentCol{0},
     maxRows{6},
     maxCols{5},
@@ -37,9 +37,9 @@ GE::GE(sf::Font& font, sf::Font& fontTitle)
     }
 
 void GE::initGrid(sf::Font& font) {
-    const float cell_size = 50.0f;
-    const float margin = 10.0f;
-    const float window_size = 800.0f;
+    constexpr float cell_size = 50.0f;
+    constexpr float margin = 10.0f;
+    constexpr float window_size = 800.0f;
 
     const float totalWidth=(static_cast<float>(maxCols)*cell_size)+(static_cast<float>(maxCols-1)*margin);
     const float totalHeight=(static_cast<float>(maxRows)*cell_size)+(static_cast<float>(maxRows-1)*margin);
@@ -64,15 +64,15 @@ void GE::initKeyboard(sf::Font& font) {
         };
 
     float xInitial = 150.0f; //stanga
-    const float yInitial = 550.0f; //jos
-    const float offx = 50.0f; //distanta dintre taste sau randuri
-    const float offy = 70.0f;
-    const float kWidth = 40.0f;
-    const float kHeight = 55.0f;
     float rowIndent=1;
 
     for (size_t r=0; r < layout.size(); r++) {
         for (size_t c = 0; c < layout[r].size(); c++) {
+            constexpr float kHeight = 55.0f;
+            constexpr float kWidth = 40.0f;
+            constexpr float offy = 70.0f;
+            constexpr float offx = 50.0f;
+            constexpr float yInitial = 550.0f;
             float x = xInitial + static_cast<float>(c) * offx;
             float y = yInitial + static_cast<float>(r) * offy;
             keyboard.emplace_back(x,y,kWidth, kHeight,layout[r][c],font);

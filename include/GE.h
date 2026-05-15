@@ -1,5 +1,6 @@
 #ifndef POO2_GE_H
 #define POO2_GE_H
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "GridCell.h"
@@ -8,7 +9,7 @@
 #include "WM.h"
 #include "Label.h"
 
-class GE {
+class GE : public UI, public ButtonObserver{
     //DATE LOGICE
     int currentRow;
     int currentCol;
@@ -40,9 +41,20 @@ public:
 
     void checkGuess();
 
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window) override;
 
     std::vector<Key>& getKeyboard() {return keyboard;}
+
+    void onButtonClick(const std::string& action) override {
+        if (action == "PLAY") {
+            std::cout << "Game Engine: Am primit semnalul de PLAY!" << std::endl;
+            // Aici poți pune logica de start, de exemplu:
+            // this->startGame();
+        }
+        else if (action == "CLOSE") {
+            std::cout << "Game Engine: Închidem ferestrele..." << std::endl;
+        }
+    }
 
 };
 

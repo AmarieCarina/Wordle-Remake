@@ -4,7 +4,7 @@
 UI::UI(float x, float y): position{x,y}, isVisible{true}{}
 
 //getters, setters pentru vizibilitate
-void UI::setVisible(bool visible) {isVisible=visible;}
+void UI::setVisible(const bool visible) {isVisible=visible;}
 bool UI::getVisible() const {return isVisible;}
 
 //setter pentru vizibilitate
