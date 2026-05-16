@@ -44,14 +44,18 @@ Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității
 
 ---
 
----
-
 ##  Elementele Vizuale 
 * **Tastatura Dinamică**: Tastele se colorează pe măsură ce joci, ajutându-te să elimini vizual literele care nu se află în cuvânt.
   <br><br>
 * **Sistemul de Pop-Up-uri**: Instrucțiunile de joc sunt prezentate printr-un Pop-Up care conține un mini-grid demonstrativ, construit dinamic în `main`.
   <br><br>
 * **Fonturi Personalizate**: Utilizarea `Diplomata-Regular` pentru titluri oferă o estetică distinctă și premium.
+
+---
+## Templates
+
+---
+## Design Patterns
 
 ---
 ## Resurse
@@ -61,12 +65,12 @@ Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității
 ---
 
 ## Cerințe indeplinite
-- [ ] minim o funcție șablon și o clasă șablon (template)
-- [ ] modificați o clasă existentă și transformați-o în clasă template
-- [ ] adăugați (minim) un atribut de tip T sau care depinde de T
-- [ ] adăugați (minim) o funcție membru care să depindă de T (sau de alt parametru template);
-- [ ] adăugați (minim) o funcție normală/liberă template; poate să fie friend
-- [ ] minim 2 design patterns
+- [x] minim o funcție șablon și o clasă șablon (template)
+- [x] modificați o clasă existentă și transformați-o în clasă template
+- [x] adăugați (minim) un atribut de tip T sau care depinde de T
+- [x] adăugați (minim) o funcție membru care să depindă de T
+- [x] adăugați (minim) o funcție normală/liberă template
+- [x] minim 2 design patterns
 
 
 

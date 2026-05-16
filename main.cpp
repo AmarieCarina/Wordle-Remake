@@ -14,7 +14,7 @@
 #include "Hint.h"
 
 template<class T>
-void alignElements(std::vector<std::unique_ptr<T>>& elements, float startX, float startY, float spacingX, float spacingY, int columns) {
+void alignElements(std::vector<std::unique_ptr<T>>& elements, const float startX, const float startY, const float spacingX, const float spacingY, const int columns) {
     for (size_t i = 0; i < elements.size(); ++i) {
         float x = startX + (i % columns) * spacingX;
         float y = startY + (i / columns) * spacingY;
