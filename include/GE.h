@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "GridCell.h"
+#include "Hint.h"
 #include "Key.h"
 #include "PopUp.h"
 #include "WM.h"
@@ -20,8 +21,22 @@ class GE : public UI, public ButtonObserver{
     //COMPONENTE UI
     std::vector<GridCell> grid;
     std::vector<Key> keyboard;
-    std::unique_ptr<PopUp> final;
+
+    std::unique_ptr<PopUp> introPopUp;
+    std::unique_ptr<PopUp> instrPopUp;
+    std::unique_ptr<PopUp> finalPopUp;
+
+    Button playButton;
+    Button closeButton;
+    Button hintButton;
+
+    void initIntroPopUp(sf::Font& font, sf::Font& fontTitle);
+    void initInstrPopUp(sf::Font& font, sf::Font& fontTitle);
+    void initFinalPopUp(sf::Font& font, sf::Font& fontTitle);
+
     WM wordmanager;
+    Hint hintManager;
+    Label hintsUsed;
 
     //CAZURI LIMITA
     Label warningLabel;
@@ -45,14 +60,19 @@ public:
 
     std::vector<Key>& getKeyboard() {return keyboard;}
 
+    void handleMouseClick(sf::Vector2f mousePos);
+
     void onButtonClick(const std::string& action) override {
         if (action == "PLAY") {
-            std::cout << "Game Engine: Am primit semnalul de PLAY!" << std::endl;
-            // Aici poți pune logica de start, de exemplu:
-            // this->startGame();
+            std::cout << "Game Engine: Start joc -> Deschidem instrucțiunile." << std::endl;
+            introPopUp->setVisible(false);
+            instrPopUp->setVisible(true);
         }
         else if (action == "CLOSE") {
-            std::cout << "Game Engine: Închidem ferestrele..." << std::endl;
+            std::cout << "Game Engine: Închidem instrucțiunile -> Începe gameplay-ul." << std::endl;
+            instrPopUp->setVisible(false);
+
+            // TODO: Aici vom activa și butonul de Hint să devină vizibil!
         }
     }
 

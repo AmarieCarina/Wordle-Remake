@@ -3,6 +3,7 @@
 #include "UI.h"
 enum class CellState {
     Key,
+    Hint,
     Default,
     Absent,
     Present,
@@ -21,11 +22,10 @@ public:
 
     void setLetter(char c);
     char getLetter() const;
-    void setColor(const sf::Color color) {
-        box.setFillColor(color); // sau rect.setFillColor(color);
-    }
+    void setColor(const sf::Color color) {box.setFillColor(color); }
 
     void updateState(CellState newState); // modif culoare
+    CellState getState() const {return state;}
 
     //redefinim functia virtuala de desenare
     void draw(sf::RenderWindow& window) override;

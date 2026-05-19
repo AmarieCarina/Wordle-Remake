@@ -29,7 +29,10 @@ char GridCell::getLetter() const {
     return s.isEmpty() ? ' ' : static_cast<char>(s[0]);
 }
 
-void GridCell::updateState(CellState newState) {
+void GridCell::updateState(const CellState newState) {
+    if (this->state == CellState::Hint) {
+        return;
+    }
     state = newState;
     const sf::Color color= getColorForState(newState);
     box.setFillColor(color);
@@ -57,13 +60,14 @@ void GridCell::draw(sf::RenderWindow& window) {
     window.draw(letter);
 }
 
-sf::Color GridCell::getColorForState(CellState state) {
+sf::Color GridCell::getColorForState(const CellState state) {
     switch (state) {
-        case CellState::Absent:return sf::Color(50,50,50); //gri inchis
-        case CellState::Present:return sf::Color(200,180,50); //galben
-        case CellState::Correct:return sf::Color(50,150,50);
+        case CellState::Absent:return {50,50,50}; //gri inchis
+        case CellState::Present:return {200,180,50}; //galben
+        case CellState::Correct:return {50,150,50};
         // case CellState::Key:return sf::Color(127,127,127);
+        case CellState::Hint: return {255, 20, 147};
         default: //CellState::Default:
-            return sf::Color(120,120,120);  //gri neutru
+            return {120,120,120};  //gri neutru
     }
 }

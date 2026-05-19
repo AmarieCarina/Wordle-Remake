@@ -5,53 +5,49 @@
 #include <vector>
 #include "ColorStrategy.h"
 
-class Hint : public ButtonObserver{
-    static int totalScore;
+class Hint {
     int hintsUsed = 0;
     std::unique_ptr<ColorStrategy> colorScheme;
 public:
     Hint() : colorScheme(std::make_unique<ClassicWordleStrategy>()) {}
 
-    void revealLetter(const std::string& target, std::vector<GridCell>& cells) {
-        for (size_t i = 0; i < target.length() && i < cells.size(); ++i) {
-            if (cells[i].getLetter() != target[i]) {
-                cells[i].setLetter(target[i]);
-                cells[i].updateState(CellState::Correct); // O marcăm ca verde/corectă
+    bool revealLetter(const std::string& target, std::vector<GridCell>& cells, const int currentRow, const int maxCols) {
+        const int rowStartIndex = currentRow * maxCols;
 
-                // Aplicăm culoarea folosind STRATEGY pattern
-                cells[i].setColor(colorScheme->getColor(CellState::Correct));
+        // Căutăm prima căsuță GOALĂ de pe rândul curent pentru a pune indiciul
+        for (int i = 0; i < maxCols; ++i) {
+            if (const int cellIndex = rowStartIndex + i; cells[cellIndex].getLetter() == ' ' && cells[cellIndex].getState() != CellState::Hint) {
+                cells[cellIndex].setLetter(target[i]);
+                cells[cellIndex].updateState(CellState::Hint); // O facem roz și o blocăm
 
-                giveHint(); // Scădem scorul
-                break; // Dezvăluim doar o literă la un click
+                hintsUsed++;
+                std::cout << "Hint folosit! Total indicii utilizate: " << hintsUsed << "/5" << std::endl;
+                break;
             }
         }
-    }
-
-    template <typename T>
-    T calculateFinalScore(T baseScore) {
-        // baseScore poate fi int sau float
-        return static_cast<T>(baseScore - (hintsUsed * 50));
-    }
-
-    void onButtonClick(const std::string& action) override {
-        if (action == "GIVE_HINT") {
-            giveHint();
+        bool rowIsComplete = true;
+        for (int j = 0; j < maxCols; ++j) {
+            if (cells[rowStartIndex + j].getLetter() == ' ') {
+                rowIsComplete = false; // Încă mai sunt spații goale
+                break;
+            }
         }
+
+        return rowIsComplete;
     }
 
-    void giveHint() {
-        hintsUsed++;
-        totalScore -= 50; // Scade scorul pentru fiecare indiciu
-        std::cout << "Hint folosit! Scos actual: " << totalScore << std::endl;
-        // Aici va veni logica de reveal din GameEngine
+    int getHintsUsed() const {
+        return hintsUsed;
     }
 
-    static int getFinalScore() { return totalScore; }
+    // Verifică dacă s-a atins limita absolută de 5 indicii
+    bool isMaxHintsReached() const {
+        return hintsUsed >= 5;
+    }
 
-    // Folosirea Strategy
+    ///CERINTA: PATTERN STRATEGY
     sf::Color getCellColor(const CellState state) const{
         return colorScheme->getColor(state);
     }
 };
-inline int Hint::totalScore = 1000;
 #endif //WORDLE_HINT_H
