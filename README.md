@@ -1,5 +1,5 @@
 # Wordle Clone - SFML C++ (tema 3 POO)
-<img width="793" height="834" alt="image" src="https://github.com/user-attachments/assets/520692a7-4cfa-424d-8e1a-f46fe04b9c88" />
+<img width="400" height="500" alt="image" src="https://github.com/user-attachments/assets/520692a7-4cfa-424d-8e1a-f46fe04b9c88" />
 
 O implementare modernă și interactivă a celebrului joc **Wordle**, dezvoltată în C++ folosind biblioteca grafică **SFML**. 
 Proiectul pune accent pe o arhitectură curată și gestionarea eficientă a resurselor.
