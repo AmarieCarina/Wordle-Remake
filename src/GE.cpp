@@ -205,8 +205,6 @@ void GE::addLetter(const char c) {
 }
 
 void GE::deleteLastLetter() {
-    const int rowStartIndex = currentRow * maxCols;
-
     while (currentCol > 0) {
         currentCol--;
         if (const int index = (currentRow * maxCols) + currentCol; grid[index].getState() != CellState::Hint) {

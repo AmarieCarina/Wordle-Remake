@@ -1,4 +1,4 @@
-# Wordle Clone - SFML C++ (tema 2 POO)
+# Wordle Clone - SFML C++ (tema 3 POO)
 
 O implementare modernă și interactivă a celebrului joc **Wordle**, dezvoltată în C++ folosind biblioteca grafică **SFML**. 
 Proiectul pune accent pe o arhitectură curată și gestionarea eficientă a resurselor.
@@ -42,26 +42,42 @@ Aceasta servește ca punte între input-ul utilizatorului și logică, transmiț
 ### 3. Gestionarea Cuvintelor (`WordManager`)
 Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității unui cuvânt introdus se face rapid pentru a asigura integritatea regulilor jocului.
 
----
+### 4. Mecanism de GamePlay (`Hint`)
+Clasa responsabilă cu gestionarea sistemului de indicii (ajutoare) puse la dispoziția jucătorului în timpul gameplay-ului activ.
+Monitorizează rândul curent pe care se joacă și completează automat prima căsuță goală cu litera corectă din cuvântul țintă (`targetWord`). Clasa încapsulează logica de blocare a celulelor folosite (starea `Hint`, colorată dedicat în roz), previne ștergerea accidentală a acestora și limitează abuzul prin oprirea funcționalității după maximum 5 utilizări per joc.
 
-##  Elementele Vizuale 
-* **Tastatura Dinamică**: Tastele se colorează pe măsură ce joci, ajutându-te să elimini vizual literele care nu se află în cuvânt.
-  <br><br>
-* **Sistemul de Pop-Up-uri**: Instrucțiunile de joc sunt prezentate printr-un Pop-Up care conține un mini-grid demonstrativ, construit dinamic în `main`.
-  <br><br>
-* **Fonturi Personalizate**: Utilizarea `Diplomata-Regular` pentru titluri oferă o estetică distinctă și premium.
 
 ---
 ## Templates
-
+* **functie libera/normala template** `alignElements<T>`
+  * funcție utilitară care aliniază geometric o listă de elemente pe ecran
+  * funcționează cu un vector de GridCell, un vector de Label sau orice alt element de UI derivat, eliminând complet duplicarea de cod.
+* **modificare in clasa template** `PopUp<T>`
+* **clasa template** 
+  * `ElementHolder`
+* **functie membru dependenta de T** 
+  * `void updateData(<T>)`
+* **data membra dependenta de T**
+  * `data`
+  
 ---
 ## Design Patterns
+1. `OBSERVER`
+   * implementata prin interfața abstractă `ButtonObserver` și clasa `Button`. 
+   * clasa Button nu știe cine este motorul jocului (GE); ea deține doar o listă de pointeri/referințe către observatori (`addObserver`). 
+   * in loc să folosim funcții callback clasice sau pointeri rigizi către funcții, butoanele din PopUp-uri (cum ar fi `playButton` sau `closeButton`) își notifică observatorii în momentul în care sunt apăsate, apelând metoda `onButtonClick("PLAY")` sau `onButtonClick("CLOSE")`. 
+   * clasa GE moștenește `ButtonObserver` și reacționează centralizat la aceste mesaje.
+<br><br>
+2. `STRATEGY`
+   * implementat prin interfața `ColorStrategy` și derivata sa, `ClassicWordleStrategy`  
+   * algoritmul care decide ce culoare primește o celulă în funcție de starea ei (**Correct**, **Present**, **Absent**) este complet izolat de clasa `GridCell`. 
 
 ---
 ## Resurse
 - [NYT WORDLE - Daily Word Game](https://www.nytimes.com/games/wordle/index.html)
 - [SFML library](https://www.sfml-dev.org/tutorials/3.0/graphics/draw/)
 - [GITHUB: shmookey - 3102 common 5-letter words](https://gist.github.com/shmookey/b28e342e1b1756c4700f42f17102c2ff)
+- [DINOPIXEL: icon joc](https://dinopixel.com/wordle-logo-pixel-art-42618)
 ---
 
 ## Cerințe indeplinite
@@ -72,7 +88,7 @@ Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității
 - [x] adăugați (minim) o funcție normală/liberă template
 - [x] minim 2 design patterns
 
-
+---
 
 ## License
 
