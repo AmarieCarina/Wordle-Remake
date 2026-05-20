@@ -52,8 +52,8 @@ Cuvintele sunt încărcate dintr-un dicționar extern. Verificarea validității
 Clasa responsabilă cu gestionarea sistemului de indicii (ajutoare) puse la dispoziția jucătorului în timpul gameplay-ului activ.
 Monitorizează rândul curent pe care se joacă și completează automat prima căsuță goală cu litera corectă din cuvântul țintă (`targetWord`). Clasa încapsulează logica de blocare a celulelor folosite (starea `Hint`, colorată dedicat în roz), previne ștergerea accidentală a acestora și limitează abuzul prin oprirea funcționalității după maximum 5 utilizări per joc.
 <p align = "center">
- <img width="150" height="200" alt="image" src="https://github.com/user-attachments/assets/bb441094-bdac-465e-9b8a-c8384d6a13e9" />
-</p>p
+ <img width="200" height="230" alt="image" src="https://github.com/user-attachments/assets/bb441094-bdac-465e-9b8a-c8384d6a13e9" />
+</p>
 
 
 
