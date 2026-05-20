@@ -26,8 +26,8 @@ GE::GE(sf::Font& font, sf::Font& fontTitle)
     playButton{370.0f, 330.0f, 70.0f, 40.0f, "Play", font},
     closeButton{600.0f, 160.0f, 30.0f, 30.0f, "x", font},
     hintButton{650.f, 50.f, 100.f, 40.f, "Hint", font},
-    hintsUsed{650.f, 100.f, "Hints: 0/5", font, 16},
     wordmanager{"assets/words.txt"},
+    hintsUsed{650.f, 100.f, "Hints: 0/5", font, 16},
     warningLabel{350.f,80.f,"",font,20},
     showWarning{false}
     {
