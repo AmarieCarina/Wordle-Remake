@@ -19,14 +19,14 @@ The objective is simple: guess the secret 5-letter word in a maximum of **6 atte
  <img width="200" height="220" alt="image" src="https://github.com/user-attachments/assets/e1ac5a14-cb1e-4d83-bcb9-adc1733c097c" />
 </p>
 
----
+
 ## Resources
 - [NYT WORDLE - Daily Word Game](https://www.nytimes.com/games/wordle/index.html)
 - [SFML library](https://www.sfml-dev.org/tutorials/3.0/graphics/draw/)
 - [GITHUB: shmookey - 3102 common 5-letter words](https://gist.github.com/shmookey/b28e342e1b1756c4700f42f17102c2ff)
 - [DINOPIXEL: icon joc](https://dinopixel.com/wordle-logo-pixel-art-42618)
 
----
+
 
 ## License
 
