@@ -1,10 +1,12 @@
-<h1 align="center> Wordle Clone - SFML C++ <\h1>
+<h1 align="center"> Wordle Clone - SFML C++ </h1>
+ 
 <p align="center">
  <img width="400" height="450" alt="image" src="https://github.com/user-attachments/assets/520692a7-4cfa-424d-8e1a-f46fe04b9c88" />
 </p>
 
 A modern and interactive implementation of the famous **Wordle** game, developed in C++ using the **SFML** graphics library. 
 The project emphasizes a clean architecture and efficient resource management.
+
 
 ## Game Description
 The objective is simple: guess the secret 5-letter word in a maximum of **6 attempts**.
