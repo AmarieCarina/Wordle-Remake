@@ -8,7 +8,7 @@ A modern and interactive implementation of the famous **Wordle** game, developed
 The project emphasizes a clean architecture and efficient resource management.
 
 ![C++](https://img.shields.io/badge/17+-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) &nbsp;&nbsp;
-![CLion](https://img.shields.io/badge/IDE-CLion-000000?style=flat-square&logo=clion&logoColor=white&color=000000) &nbsp;&nbsp;
+![CLion](https://img.shields.io/badge/IDE-000000?style=flat-square&logo=clion&logoColor=white&color=000000) &nbsp;&nbsp;
 ![SFML](https://img.shields.io/badge/Library-SFML-8CC43C?style=flat-square&logo=sfml&logoColor=white) &nbsp;&nbsp;
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square) 
 
