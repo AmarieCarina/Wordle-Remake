@@ -1,4 +1,4 @@
-<h1 align="center"> Wordle Clone - SFML C++ </h1>
+<h1 align="center"> Wordle Remake - SFML C++ </h1>
  
 <p align="center">
  <img width="400" height="450" alt="image" src="https://github.com/user-attachments/assets/520692a7-4cfa-424d-8e1a-f46fe04b9c88" />
@@ -6,6 +6,11 @@
 
 A modern and interactive implementation of the famous **Wordle** game, developed in C++ using the **SFML** graphics library. 
 The project emphasizes a clean architecture and efficient resource management.
+
+![C++](https://img.shields.io/badge/C++-17+-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) &nbsp;&nbsp;
+![CLion](https://img.shields.io/badge/IDE-CLion-000000?style=flat-square&logo=clion&logoColor=white&color=000000) &nbsp;&nbsp;
+![SFML](https://img.shields.io/badge/Library-SFML-8CC43C?style=flat-square&logo=sfml&logoColor=white) &nbsp;&nbsp;
+![Status](https://img.shields.io/badge/Status-Completed-success?style=flat-square) 
 
 
 ## Game Description
