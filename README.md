@@ -5,7 +5,7 @@
 </p>
 
 A modern and interactive implementation of the famous **Wordle** game, developed in C++ using the **SFML** graphics library. 
-The project emphasizes a clean architecture and efficient resource management.
+The project emphasizes a clean architecture and efficient resource management, introducing an innovative **hint system** to elevate the user experience.
 
 ![C++](https://img.shields.io/badge/20-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) &nbsp;&nbsp;
 ![CLion](https://img.shields.io/badge/IDE-000000?style=flat-square&logo=clion&logoColor=white&color=000000) &nbsp;&nbsp;
