@@ -16,9 +16,9 @@ The project emphasizes a clean architecture and efficient resource management.
 ## Game Description
 The objective is simple: guess the secret 5-letter word in a maximum of **6 attempts**.
 * After each guess, the cells change color to provide feedback:
-  * 🟩 **Green**: The letter is correct and in the correct position.
-  * 🟨 **Yellow**: The letter is part of the word, but in a different position.
-  * ⬛ **Gray**: The letter is not part of the word.
+  * 🟢 **Green**: The letter is correct and in the correct position.
+  * 🟡 **Yellow**: The letter is part of the word, but in a different position.
+  * ⚫ **Gray**: The letter is not part of the word.
 * The game features an interactive virtual keyboard that updates in real-time, along with custom Pop-Up windows for instructions and game status.
 <p align="center">
  <img width="200" height="220" alt="image" src="https://github.com/user-attachments/assets/e1ac5a14-cb1e-4d83-bcb9-adc1733c097c" />
